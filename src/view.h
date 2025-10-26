@@ -1,10 +1,11 @@
 #pragma once
 #include <iostream>
 #include <string>
-#include "utils.h"
+#include "body.h"
 
+namespace Space {
+	struct View {
 
-struct View {
-
-    void DebugInfo(Body& b,Body& b2);
-};
+		void DebugInfo(Body& b, Body& b2);
+	};
+}

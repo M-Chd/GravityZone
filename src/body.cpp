@@ -1,100 +1,176 @@
 #include <iostream>
 #include "body.h"
 
-
-Body::Body(Position pos, double mass, float radius,Velocity2 speed) : 
-pos(pos),mass(mass),radius(radius),speed(speed) {}
-
-bool checkSizeOldPos(std::vector<Position> oldPos, size_t max){
-
-    if(oldPos.size() >= max){
-        oldPos.clear();
-        return false;
+namespace Space {
+    Body::Body(Color color, Position pos, double mass, float radius, Velocity2 speed) : color(color), pos(pos), mass(mass),
+        radius(radius), speed(speed)
+    {
+        if (mass <= 0) {
+            std::cerr << "Mass cannot be negative or null" << "\n";
+            return;
+        }
+        if (radius <= 0) {
+            std::cerr << "Radius cannot be negative or null" << "\n";
+        }
     }
-    return true;
+
+    bool checkSizeOldPos(std::vector<Position> oldPos, size_t max) {
+
+        if (oldPos.size() >= max) {
+            oldPos.clear();
+            return false;
+        }
+        return true;
+    }
+
+    void Body::draw() const {
+        int screenX = static_cast<int>(pos.x * scale);
+        int screenY = static_cast<int>(pos.y * scale);
+        float screenRadius = radius * scale;
+        DrawCircle(screenX, screenY, screenRadius, color);
+
+        for (auto e : oldPositions) {
+            DrawCircle(static_cast<int>(e.x * scale), static_cast<int>(e.y * scale), 2, color);
+        }
+    }
+
+    void Body::check_touched_ledge()
+    {
+        double posY = pos.y + radius + 0.15; // Position y of the body
+        double posX = pos.x + radius;
+        double posXBack = pos.x - radius - 0.18;
+        double posYTop = pos.y - radius;
+
+        has_touched_low_ledge = (posY >= 720 / scale);
+        has_touched_top_ledge = (posYTop <= 0);
+        has_touched_left_ledge = (posXBack <= 0.5);
+        has_touched_right_ledge = (posX >= 1280 / scale);
+
+    }
+
+    Color Body::getColor() const
+    {
+        return color;
+    }
+
+    double Body::getMass() const
+    {
+        return mass;
+    }
+
+    float Body::getRadius() const
+    {
+        return radius;
+    }
+
+    Velocity2 Body::getSpeed() const
+    {
+        return speed;
+    }
+
+    double Body::getAcceleration() const
+    {
+        return acceleration;
+    }
+
+    Position Body::getPos() const
+    {
+        return pos;
+    }
+
+    std::vector<Position> Body::getOldPositions()
+    {
+        return oldPositions;
+    }
+
+    void Body::setMass(double m)
+    {
+        if (m > 0) {
+            mass = m;
+        }
+        else {
+            std::cerr << "Mass cannot be negative or null" "\n";
+        }
+    }
+
+    void Body::setRadius(float r)
+    {
+        if (r > 0) {
+            radius = r;
+        }
+        else {
+            std::cerr << "Radius cannot be negative or null" "\n";
+        }
+    }
+
+    void Body::setSpeed(Velocity2 v)
+    {
+        speed = v;
+    }
+
+    void Body::setAcceleration(double a)
+    {
+        acceleration = a;
+    }
+
+    void Body::setPosition(Position p)
+    {
+        pos = p;
+    }
+
+    void Body::appgravity(Body& b2)
+    {
+        auto b2Speed = b2.getSpeed();
+        auto b2Pos = b2.getPos();
+
+        speed.y += 0.02; // gravity -> a modifier par la constante (default 0.02)
+
+        pos.y += speed.y;
+        pos.x += speed.x;
+
+        if (oldPositions.size() >= MAXOLDPOS) {
+            oldPositions.clear();
+        }
+
+        oldPositions.push_back(pos);
+
+        check_touched_ledge();
+
+        if (has_touched_low_ledge) {
+            pos.y = (720 / scale) - radius;
+            speed.y *= -0.9; 
+            speed.x *= 0.9;
+          
+        }
+        if (has_touched_top_ledge) {
+            pos.y = radius;
+            speed.y *= -0.9;
+            speed.x *= 0.9;
+        }
+        if (has_touched_right_ledge) {
+            pos.x = (1280 / scale) - radius;
+            speed.y *= 0.9;
+            speed.x *= -0.9;
+        }
+        if (has_touched_left_ledge || collisionCheck(*this, b2)) {
+            speed.x *= -0.9;
+            speed.y *= -0.9;
+        }
+    }
+
+    double calculateDistance(Body b1, Body b2) {
+
+        Position b1Pos = b1.getPos();
+        Position b2Pos = b2.getPos();
+
+        return sqrt((pow(b2Pos.x - b1Pos.x, 2) + pow(b2Pos.y - b1Pos.y, 2)));
+    }
+
+    bool collisionCheck(Body& b1, Body& b2) {
+
+        double distance = calculateDistance(b1, b2);
+        float radiusSum = b1.getRadius() + b2.getRadius();
+        return distance <= radiusSum;
+    }
 }
 
-void Body::draw(Color color) const {
-    int screenX = static_cast<int>(pos.x * scale);
-    int screenY = static_cast<int>(pos.y * scale);
-    float screenRadius = radius * scale;
-    DrawCircle(screenX, screenY, screenRadius, color);
-
-    for (auto e : oldPositions){
-        DrawCircle(static_cast<int>(e.x * scale) ,static_cast<int>(e.y * scale) ,2,color);
-    }
-}
-
-
-void Body::applyGravity(std::vector<Body> bodies) const 
-{
-    for (auto& b : bodies){
-        //code TODO
-        std::cout<<"Test"<<"\n";
-    }
-}
-
-void Body::check_touched_ledge(){
-    double posY = pos.y + radius + 0.10; // Position y of the body
-    double posX = pos.x + radius;
-    double posXBack = pos.x - radius - 0.17;
-    double posYTop = pos.y - radius;
-
-    has_touched_low_ledge = (posY >= 720/scale);
-    has_touched_top_ledge = (posYTop <= 0);
-    has_touched_left_ledge = (posXBack <= 0.5);
-    has_touched_right_ledge = (posX >= 1280/scale);
-
-}
-
-void appgravity(Body& b,Body& b2){
-
-    b.speed.y += 0.02; // gravity -> a modifier par la constante (default 0.02)
-
-    b.pos.y += b.speed.y;
-    b.pos.x += b.speed.x;
-
-    if (b.oldPositions.size() >= b.MAXOLDPOS){
-        b.oldPositions.clear();
-    }
-
-    b.oldPositions.push_back(b.pos);
-
-    b.check_touched_ledge();
-
-    if (b.has_touched_low_ledge) {
-        b.pos.y = (720 / scale) - b.radius;
-        b.speed.y *= -0.9;
-
-        b.speed.x *= 0.9;
-    }
-    if (b.has_touched_top_ledge) {
-        b.pos.y = b.radius;
-        b.speed.y *= -0.9;
-        b.speed.x *= 0.9;
-    }
-    if (b.has_touched_right_ledge){
-        b.pos.x = (1280/scale) - b.radius;
-        b.speed.y *= 0.9;
-        b.speed.x *= -0.9;
-    }
-    if (b.has_touched_left_ledge || collisionCheck(b,b2)){
-        b.speed.x *= -0.9;
-        b.speed.y *= -0.9;
-    }
-}
-
-double calculateDistance(Body b1, Body b2){
-
-    Position b1Pos = b1.pos;
-    Position b2Pos = b2.pos;
-
-    return sqrt((pow(b2Pos.x - b1Pos.x,2) + pow(b2Pos.y - b1Pos.y,2)));
-}
-
-bool collisionCheck(Body& b1,Body& b2){
-
-    double distance = calculateDistance(b1,b2);
-    float radiusSum = b1.radius + b2.radius;
-    return distance <= radiusSum;
-}

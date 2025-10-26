@@ -13,14 +13,34 @@
     <ClCompile Include="C:\Users\mouad\OneDrive\Desktop\GravityZone\src\view.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\mouad\OneDrive\Desktop\GravityZone\src\utils.cpp">
+    <ClCompile Include="C:\Users\mouad\OneDrive\Desktop\GravityZone\src\space.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C:\Users\mouad\OneDrive\Desktop\GravityZone\src\space.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\constant.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\body.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\view.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\position.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="C:\Users\mouad\OneDrive\Desktop\GravityZone\CmakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{C605FF77-EBC7-3B96-830F-9F1C3C3374C9}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Source Files">
       <UniqueIdentifier>{1AB197DE-50C2-3C8D-A1F9-D1678CA41A91}</UniqueIdentifier>
     </Filter>

@@ -1,6 +1,5 @@
 #include <iostream>
 #include <raylib.h>
-#include "utils.h"
 #include "constant.h"
 #include "view.h"
 #include <memory>
@@ -8,6 +7,8 @@
 
 #define HEIGHT 720
 #define LENGTH 1280
+
+using namespace Space;
 
 
 int main() {
@@ -23,32 +24,25 @@ int main() {
     Position pos2 = {30,20};
     Position pos3 = {40,20};
 
-    Body planet = Body(pos,50,1,Velocity2(1,1));
-    Body planet2 = Body(pos2,50,1,Velocity2(1,1));
-    Body planet3 = Body(pos3,50,1,Velocity2(1,0.5));
+    Body planet = Body(WHITE,pos,50,1,Velocity2(1,1));
+    Body planet2 = Body(BLUE,pos2,50,1,Velocity2(1,1));
 
     View v;
 
     bodies.push_back(planet);
     bodies.push_back(planet2);
-    bodies.push_back(planet3);
 
     while (!WindowShouldClose()) {
         BeginDrawing();
         ClearBackground(BLACK);
 
-        planet.draw(WHITE);
-        planet2.draw(BLUE);
-        planet3.draw(GREEN);
+        planet.draw();
+        planet2.draw();
 
         v.DebugInfo(planet,planet2);
 
-        appgravity(planet,planet2);
-        appgravity(planet2,planet);
-        appgravity(planet3,planet);
-        appgravity(planet3,planet2);
-        appgravity(planet,planet3);
-        appgravity(planet2,planet3);
+        planet.appgravity(planet2);
+        planet2.appgravity(planet);
         
         EndDrawing();
     }

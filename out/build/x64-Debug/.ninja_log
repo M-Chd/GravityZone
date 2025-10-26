@@ -1,0 +1,7 @@
+# ninja log v5
+2	655	7831509050899853	CMakeFiles/GravityZone.dir/src/body.cpp.obj	750d40d217467fec
+3	803	7831508114769455	CMakeFiles/GravityZone.dir/src/main.cpp.obj	d51e293c2af3be2
+15	111	7831079911974391	CMakeFiles/GravityZone.dir/src/constant.cpp.obj	ba1c67d9dde32844
+2	646	7831510347991826	CMakeFiles/GravityZone.dir/src/view.cpp.obj	3e601b4eee9aae4a
+647	1215	7831510349519498	GravityZone.exe	13d93f7cc40b6748
+102	1460	7831507484511424	CMakeFiles/GravityZone.dir/src/space.cpp.obj	a78f4fd330e8867b
