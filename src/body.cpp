@@ -2,7 +2,7 @@
 #include "body.h"
 
 namespace Space {
-    Body::Body(Color color, Position pos, double mass, float radius, Velocity2 speed) : color(color), pos(pos), mass(mass),
+    Body::Body(Color color, Vector2 pos, double mass, float radius, Velocity2 speed) : color(color), pos(pos), mass(mass),
         radius(radius), speed(speed)
     {
         if (mass <= 0) {
@@ -14,26 +14,18 @@ namespace Space {
         }
     }
 
-    bool checkSizeOldPos(std::vector<Position> oldPos, size_t max) {
-
-        if (oldPos.size() >= max) {
-            oldPos.clear();
-            return false;
-        }
-        return true;
-    }
-
     void Body::draw() const {
         int screenX = static_cast<int>(pos.x * scale);
         int screenY = static_cast<int>(pos.y * scale);
         float screenRadius = radius * scale;
         DrawCircle(screenX, screenY, screenRadius, color);
 
-        for (auto e : oldPositions) {
+        for (auto& e : oldPositions) {
             DrawCircle(static_cast<int>(e.x * scale), static_cast<int>(e.y * scale), 2, color);
         }
     }
 
+    //Need to be optimized.
     void Body::check_touched_ledge()
     {
         double posY = pos.y + radius + 0.15; // Position y of the body
@@ -73,12 +65,12 @@ namespace Space {
         return acceleration;
     }
 
-    Position Body::getPos() const
+    Vector2 Body::getPos() const
     {
         return pos;
     }
 
-    std::vector<Position> Body::getOldPositions()
+    std::vector<Vector2> Body::getOldPositions()
     {
         return oldPositions;
     }
@@ -113,10 +105,15 @@ namespace Space {
         acceleration = a;
     }
 
-    void Body::setPosition(Position p)
+    void Body::setPosition(Vector2 p)
     {
         pos = p;
     }
+
+    /**
+    All this following code need to be changed and optimized.
+    All the code below this message are obselete.
+     */
 
     void Body::appgravity(Body& b2)
     {
@@ -158,10 +155,10 @@ namespace Space {
         }
     }
 
-    double calculateDistance(Body b1, Body b2) {
+    double calculateDistance(Body& b1, Body& b2) {
 
-        Position b1Pos = b1.getPos();
-        Position b2Pos = b2.getPos();
+        Vector2 b1Pos = b1.getPos();
+        Vector2 b2Pos = b2.getPos();
 
         return sqrt((pow(b2Pos.x - b1Pos.x, 2) + pow(b2Pos.y - b1Pos.y, 2)));
     }

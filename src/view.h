@@ -6,6 +6,6 @@
 namespace Space {
 	struct View {
 
-		void DebugInfo(Body& b, Body& b2);
+		void DebugInfo(Body& b);
 	};
 }

@@ -1,7 +1,6 @@
 #pragma once
 #include <iostream>
 #include <raylib.h>
-#include "position.h"
 #include "constant.h"
 #include <vector>
 
@@ -17,7 +16,7 @@ namespace Space {
 
     public:
 
-        Body(Color color, Position pos, double mass, float radius, Velocity2 speed);
+        Body(Color color, Vector2 pos, double mass, float radius, Velocity2 speed);
         ~Body() = default;
 
         void draw() const;
@@ -29,8 +28,8 @@ namespace Space {
         float getRadius() const;
         Velocity2 getSpeed() const;
         double getAcceleration() const;
-        Position getPos() const;
-        std::vector<Position> getOldPositions();
+        Vector2 getPos() const;
+        std::vector<Vector2> getOldPositions();
 
         void appgravity(Body& b2);
 
@@ -38,7 +37,7 @@ namespace Space {
         void setRadius(float r);
         void setSpeed(Velocity2 v);
         void setAcceleration(double a);
-        void setPosition(Position p);
+        void setPosition(Vector2 p);
 
         bool has_touched_top_ledge = false;
         bool has_touched_low_ledge = false; //TODO need to be changed -> not optimal
@@ -51,11 +50,11 @@ namespace Space {
         float radius;
         Velocity2 speed;
         double acceleration = 0;
-        Position pos;
-        std::vector<Position> oldPositions;
+        Vector2 pos;
+        std::vector<Vector2> oldPositions;
     };
 
-    double calculateDistance(Body b1, Body b2);
+    double calculateDistance(Body& b1, Body& b2);
 
     bool collisionCheck(Body& b1, Body& b2);
 }

@@ -3,24 +3,50 @@
 
 namespace Space {
 
-	Space::Space()
-	{
+	space::space(){}
+
+	space::~space(){
+		bodies.clear();
 	}
 
-	Space::~Space()
-	{
-	}
-
-	std::vector<Body> Space::getBodies() const
+	std::vector<Body*>& space::getBodies()
 	{
 		return bodies;
 	}
 
-	void Space::applyG()
+	void space::applyG()
 	{
-		for (auto& b : bodies) {
-
+		if (!bodies.empty()) {
+			for (auto& b : bodies) {
+				//TODO
+			}
 		}
+	}
+
+	void space::updateBodies()
+	{
+		if (!bodies.empty()) {
+			for (auto* b1 : bodies) {
+				for (auto* b2 : bodies) {
+					if (b1 != b2) {
+						b1->appgravity(*b2);
+					}
+				}
+				b1->draw();
+			}
+		}
+	}
+
+	void space::freeBodies()
+	{
+		if (bodies.size() > 10) {
+			bodies.clear();
+		}
+	}
+
+	void space::add(Body* b)
+	{
+		bodies.push_back(b);
 	}
 
 }

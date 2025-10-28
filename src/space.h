@@ -4,18 +4,22 @@
 
 namespace Space {
 
-	class Space {
+	class space {
 	public:
 
-		Space();
-		~Space();
+		space();
+		~space();
 
 		void applyG();
+		void updateBodies();
+		void freeBodies();
 
-		std::vector<Body> getBodies() const;
+		void add(Body* b);
+
+		std::vector<Body*>& getBodies();
 
 
 	private:
-		std::vector<Body> bodies;
+		std::vector<Body*> bodies;
 	};
 }

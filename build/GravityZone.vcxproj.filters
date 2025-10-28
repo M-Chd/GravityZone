@@ -16,21 +16,15 @@
     <ClCompile Include="C:\Users\mouad\OneDrive\Desktop\GravityZone\src\space.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="C:\Users\mouad\OneDrive\Desktop\GravityZone\src\handleEvent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="C:\Users\mouad\OneDrive\Desktop\GravityZone\src\space.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\constant.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\body.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\view.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\position.h">
+    <ClInclude Include="C:\Users\mouad\OneDrive\Desktop\GravityZone\src\handleEvent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
