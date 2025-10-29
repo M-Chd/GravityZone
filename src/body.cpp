@@ -115,46 +115,6 @@ namespace Space {
     All the code below this message are obselete.
      */
 
-    void Body::appgravity(Body& b2)
-    {
-        auto b2Speed = b2.getSpeed();
-        auto b2Pos = b2.getPos();
-
-        speed.y += 0.02; // gravity -> a modifier par la constante (default 0.02)
-
-        pos.y += speed.y;
-        pos.x += speed.x;
-
-        if (oldPositions.size() >= MAXOLDPOS) {
-            oldPositions.clear();
-        }
-
-        oldPositions.push_back(pos);
-
-        check_touched_ledge();
-
-        if (has_touched_low_ledge) {
-            pos.y = (720 / scale) - radius;
-            speed.y *= -0.9; 
-            speed.x *= 0.9;
-          
-        }
-        if (has_touched_top_ledge) {
-            pos.y = radius;
-            speed.y *= -0.9;
-            speed.x *= 0.9;
-        }
-        if (has_touched_right_ledge) {
-            pos.x = (1280 / scale) - radius;
-            speed.y *= 0.9;
-            speed.x *= -0.9;
-        }
-        if (has_touched_left_ledge || collisionCheck(*this, b2)) {
-            speed.x *= -0.9;
-            speed.y *= -0.9;
-        }
-    }
-
     double calculateDistance(Body& b1, Body& b2) {
 
         Vector2 b1Pos = b1.getPos();

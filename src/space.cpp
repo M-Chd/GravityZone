@@ -26,13 +26,8 @@ namespace Space {
 	void space::updateBodies()
 	{
 		if (!bodies.empty()) {
-			for (auto* b1 : bodies) {
-				for (auto* b2 : bodies) {
-					if (b1 != b2) {
-						b1->appgravity(*b2);
-					}
-				}
-				b1->draw();
+			for (auto* b : bodies) {
+				b->draw();
 			}
 		}
 	}

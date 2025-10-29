@@ -5,7 +5,8 @@ namespace Space {
 	void handleEvent(space& Space)
 	{
 		if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
-			auto mousePos = GetMousePosition();
+			Vector2 mousePos = GetMousePosition();
+			mousePos = { mousePos.x / scale,mousePos.y / scale };
 
 			Body* planet = new Body(WHITE, mousePos, 50, 1, Velocity2(1,1));
 

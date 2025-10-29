@@ -31,8 +31,6 @@ namespace Space {
         Vector2 getPos() const;
         std::vector<Vector2> getOldPositions();
 
-        void appgravity(Body& b2);
-
         void setMass(double m);
         void setRadius(float r);
         void setSpeed(Velocity2 v);
