@@ -39,9 +39,11 @@ namespace Space {
 		}
 	}
 
-	void space::add(Body* b)
+	logsEvents space::add(Body* b)
 	{
 		bodies.push_back(b);
+
+		return logsEvents::PLACE_EVENT;
 	}
 
 }

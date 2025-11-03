@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include "body.h"
+#include "logsEvents.h"
 
 namespace Space {
 
@@ -14,7 +15,7 @@ namespace Space {
 		void updateBodies();
 		void freeBodies();
 
-		void add(Body* b);
+		logsEvents add(Body* b);
 
 		std::vector<Body*>& getBodies();
 
