@@ -340,6 +340,11 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClCompile Include="C:\Users\mouad\OneDrive\Desktop\GravityZone\src\space.cpp" />
     <ClInclude Include="C:\Users\mouad\OneDrive\Desktop\GravityZone\src\handleEvent.h" />
     <ClCompile Include="C:\Users\mouad\OneDrive\Desktop\GravityZone\src\handleEvent.cpp" />
+    <ClInclude Include="C:\Users\mouad\OneDrive\Desktop\GravityZone\src\utils.h" />
+    <ClCompile Include="C:\Users\mouad\OneDrive\Desktop\GravityZone\src\utils.cpp" />
+    <ClInclude Include="C:\Users\mouad\OneDrive\Desktop\GravityZone\src\logs.h" />
+    <ClInclude Include="C:\Users\mouad\OneDrive\Desktop\GravityZone\src\logsEvents.h" />
+    <ClCompile Include="C:\Users\mouad\OneDrive\Desktop\GravityZone\src\logs.cpp" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

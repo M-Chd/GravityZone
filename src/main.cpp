@@ -22,14 +22,13 @@ int main() {
 
     space Space;
 
-    Vector2 pos = {20,20};;
+    Vector2 pos = {20,20};
 
     Body planet = Body(WHITE,pos,50,1,Velocity2(1,1));
 
-
     View v;
 
-    Space.add(&planet);
+    Space.add(planet);
 
     while (!WindowShouldClose()) {
         BeginDrawing();

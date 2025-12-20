@@ -1,8 +1,9 @@
-# ninja log v5
-14	1609	7831531645953191	CMakeFiles/GravityZone.dir/src/body.cpp.obj	750d40d217467fec
-2	624	7831534823809381	CMakeFiles/GravityZone.dir/src/main.cpp.obj	d51e293c2af3be2
-15	111	7831079911974391	CMakeFiles/GravityZone.dir/src/constant.cpp.obj	ba1c67d9dde32844
-21	1614	7831531646024644	CMakeFiles/GravityZone.dir/src/view.cpp.obj	3e601b4eee9aae4a
-624	1194	7831534825231382	GravityZone.exe	931fe3a9694972d6
-7	853	7831532832544558	CMakeFiles/GravityZone.dir/src/handleEvent.cpp.obj	1448b878631f6558
-29	1568	7831531645599957	CMakeFiles/GravityZone.dir/src/space.cpp.obj	a78f4fd330e8867b
+# ninja log v6
+55	150	7878217878625784	CMakeFiles/GravityZone.dir/src/logs.cpp.obj	1374348cbcf99ac8
+17	158	7878217878230074	CMakeFiles/GravityZone.dir/src/constant.cpp.obj	ad8c994d8435432a
+46	181	7878217878539608	CMakeFiles/GravityZone.dir/src/utils.cpp.obj	265591be504ad635
+38	1262	7878217878423924	CMakeFiles/GravityZone.dir/src/handleEvent.cpp.obj	c0609c34bd7523bd
+6	1270	7878217878129160	CMakeFiles/GravityZone.dir/src/main.cpp.obj	7a489672d17503f6
+30	1288	7878217878360766	CMakeFiles/GravityZone.dir/src/space.cpp.obj	c3dd882cd0d96c0a
+11	1304	7878217878149218	CMakeFiles/GravityZone.dir/src/body.cpp.obj	75f04f1ff01d3bfd
+23	1322	7878217878310712	CMakeFiles/GravityZone.dir/src/view.cpp.obj	dceb4060db90a6f2

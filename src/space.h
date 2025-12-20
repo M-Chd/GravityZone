@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include <numeric>
 #include "body.h"
 #include "logsEvents.h"
 
@@ -15,12 +16,13 @@ namespace Space {
 		void updateBodies();
 		void freeBodies();
 
-		logsEvents add(Body* b);
+		void add(Body b);
+		void removeAtPos(Vector2 pos);
 
-		std::vector<Body*>& getBodies();
+		std::vector<Body>& getBodies();
 
 
 	private:
-		std::vector<Body*> bodies;
+		std::vector<Body> bodies;
 	};
 }

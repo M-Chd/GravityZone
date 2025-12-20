@@ -8,9 +8,16 @@ namespace Space {
 			Vector2 mousePos = GetMousePosition();
 			mousePos = { mousePos.x / scale,mousePos.y / scale };
 
-			Body* planet = new Body(WHITE, mousePos, 50, 1, Velocity2(1,1));
+			Body planet = Body(WHITE, mousePos, 50, 1, Velocity2(1,1));
 
 			Space.add(planet);
+		}
+
+		if (IsMouseButtonDown(MOUSE_BUTTON_RIGHT)) {
+			Vector2 mousePos = GetMousePosition();
+			mousePos = { mousePos.x / scale, mousePos.y / scale };
+			
+			Space.removeAtPos(mousePos);
 		}
 	}
 	//TODO Need to be moved and optimized.

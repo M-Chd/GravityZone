@@ -2,6 +2,7 @@
 #include <iostream>
 #include <raylib.h>
 #include "constant.h"
+#include "utils.h"
 #include <vector>
 
 namespace Space {
@@ -51,8 +52,6 @@ namespace Space {
         Vector2 pos;
         std::vector<Vector2> oldPositions;
     };
-
-    double calculateDistance(Body& b1, Body& b2);
 
     bool collisionCheck(Body& b1, Body& b2);
 }

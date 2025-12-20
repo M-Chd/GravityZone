@@ -19,12 +19,27 @@
     <ClCompile Include="C:\Users\mouad\OneDrive\Desktop\GravityZone\src\handleEvent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="C:\Users\mouad\OneDrive\Desktop\GravityZone\src\utils.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\mouad\OneDrive\Desktop\GravityZone\src\logs.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="C:\Users\mouad\OneDrive\Desktop\GravityZone\src\space.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="C:\Users\mouad\OneDrive\Desktop\GravityZone\src\handleEvent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\mouad\OneDrive\Desktop\GravityZone\src\utils.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\mouad\OneDrive\Desktop\GravityZone\src\logs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\mouad\OneDrive\Desktop\GravityZone\src\logsEvents.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

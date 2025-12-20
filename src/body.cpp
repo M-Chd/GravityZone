@@ -115,17 +115,9 @@ namespace Space {
     All the code below this message are obselete.
      */
 
-    double calculateDistance(Body& b1, Body& b2) {
-
-        Vector2 b1Pos = b1.getPos();
-        Vector2 b2Pos = b2.getPos();
-
-        return sqrt((pow(b2Pos.x - b1Pos.x, 2) + pow(b2Pos.y - b1Pos.y, 2)));
-    }
-
     bool collisionCheck(Body& b1, Body& b2) {
 
-        double distance = calculateDistance(b1, b2);
+        double distance = distanceBetween(b1.getPos(), b2.getPos());
         float radiusSum = b1.getRadius() + b2.getRadius();
         return distance <= radiusSum;
     }
