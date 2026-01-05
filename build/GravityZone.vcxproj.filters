@@ -42,6 +42,12 @@
     <ClInclude Include="C:\Users\mouad\OneDrive\Desktop\GravityZone\src\logsEvents.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\body.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\view.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="C:\Users\mouad\OneDrive\Desktop\GravityZone\CmakeLists.txt" />

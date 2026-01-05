@@ -2,27 +2,27 @@
 #include <vector>
 #include <numeric>
 #include "body.h"
-#include "logsEvents.h"
+#include "utils.h"
 
-namespace Space {
+class Body;
 
-	class space {
-	public:
+class space {
+public:
 
-		space();
-		~space();
+	space();
+	~space();
 
-		void applyG();
-		void updateBodies();
-		void freeBodies();
+	void applyG();
+	void drawBodies();
+	void clearBodiesIfOver10();
+	void updateAll(float dt);
 
-		void add(Body b);
-		void removeAtPos(Vector2 pos);
+	void add(Body b);
+	void removeAtPos(Vector2 pos);
 
-		std::vector<Body>& getBodies();
+	std::vector<Body>& getBodies();
 
 
-	private:
-		std::vector<Body> bodies;
-	};
-}
+private:
+	std::vector<Body> bodies;
+};

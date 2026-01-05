@@ -1,21 +1,18 @@
 #pragma once
 #include "logsEvents.h"
 
-namespace Logs{
+class Log {
+private:
+	logsEvents m_evenType;
 
-	class Log {
-	private:
-		logsEvents m_evenType;
+public:
+	Log() {};
+	~Log() {};
 
-	public:
-		Log() {};
-		~Log() {};
+	void ErrorMessage(logsEvents event);
+	void WarningMessage(logsEvents event);
+	void PlaceEvent(logsEvents event);
+	void DeleteEvent(logsEvents event);
+	void CollisionEvent(logsEvents event);
 
-		void ErrorMessage(logsEvents event);
-		void WarningMessage(logsEvents event);
-		void PlaceEvent(logsEvents event);
-		void DeleteEvent(logsEvents event);
-		void CollisionEvent(logsEvents event);
-
-	};
-}
+};

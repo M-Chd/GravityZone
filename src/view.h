@@ -3,9 +3,7 @@
 #include <string>
 #include "body.h"
 
-namespace Space {
-	struct View {
+struct View {
 
-		void DebugInfo(Body& b);
-	};
-}
+	void DebugInfo(Body& b);
+};

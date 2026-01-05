@@ -1,125 +1,108 @@
-#include <iostream>
 #include "body.h"
+#include <iostream>
 
-namespace Space {
-    Body::Body(Color color, Vector2 pos, double mass, float radius, Velocity2 speed) : color(color), pos(pos), mass(mass),
-        radius(radius), speed(speed)
-    {
-        if (mass <= 0) {
-            std::cerr << "Mass cannot be negative or null" << "\n";
-            return;
-        }
-        if (radius <= 0) {
-            std::cerr << "Radius cannot be negative or null" << "\n";
-        }
+Body::Body(Color color, Vector2 pos, double mass, float radius, Vector2 initialVelocity)
+    : color(color), pos(pos), mass(mass), radius(radius), velocity(initialVelocity)
+{
+    oldPositions.reserve(MAXOLDPOS);
+    totalForce = { 0.0f, 0.0f };
+
+    if (mass <= 0) std::cerr << "Mass must be > 0\n";
+    if (radius <= 0) std::cerr << "Radius must be > 0\n";
+}
+
+void Body::draw() const {
+    for (size_t i = 0; i < oldPositions.size(); i++) {
+        DrawCircle(oldPositions[i].x * scale, oldPositions[i].y * scale, 1.0f, color);
     }
 
-    void Body::draw() const {
-        int screenX = static_cast<int>(pos.x * scale);
-        int screenY = static_cast<int>(pos.y * scale);
-        float screenRadius = radius * scale;
-        DrawCircle(screenX, screenY, screenRadius, color);
+    DrawCircleV({ pos.x * scale, pos.y * scale }, radius * scale, color);
+}
 
-        for (auto& e : oldPositions) {
-            DrawCircle(static_cast<int>(e.x * scale), static_cast<int>(e.y * scale), 2, color);
-        }
+void Body::check_touched_ledge() {
+    float limitX = 1280.0f / scale;
+    float limitY = 720.0f / scale;
+
+    has_touched_low_ledge = (pos.y + radius >= limitY);
+    has_touched_top_ledge = (pos.y - radius <= 0);
+    has_touched_left_ledge = (pos.x - radius <= 0);
+    has_touched_right_ledge = (pos.x + radius >= limitX);
+
+    if (has_touched_low_ledge) {
+        pos.y = limitY - radius;
+        velocity.y *= -0.9f;
     }
-
-    //Need to be optimized.
-    void Body::check_touched_ledge()
-    {
-        double posY = pos.y + radius + 0.15; // Position y of the body
-        double posX = pos.x + radius;
-        double posXBack = pos.x - radius - 0.18;
-        double posYTop = pos.y - radius;
-
-        has_touched_low_ledge = (posY >= 720 / scale);
-        has_touched_top_ledge = (posYTop <= 0);
-        has_touched_left_ledge = (posXBack <= 0.5);
-        has_touched_right_ledge = (posX >= 1280 / scale);
-
+    if (has_touched_top_ledge) {
+        pos.y = radius;
+        velocity.y *= -0.9f;
     }
-
-    Color Body::getColor() const
-    {
-        return color;
+    if (has_touched_left_ledge) {
+        pos.x = radius;
+        velocity.x *= -0.9f;
     }
-
-    double Body::getMass() const
-    {
-        return mass;
-    }
-
-    float Body::getRadius() const
-    {
-        return radius;
-    }
-
-    Velocity2 Body::getSpeed() const
-    {
-        return speed;
-    }
-
-    double Body::getAcceleration() const
-    {
-        return acceleration;
-    }
-
-    Vector2 Body::getPos() const
-    {
-        return pos;
-    }
-
-    std::vector<Vector2> Body::getOldPositions()
-    {
-        return oldPositions;
-    }
-
-    void Body::setMass(double m)
-    {
-        if (m > 0) {
-            mass = m;
-        }
-        else {
-            std::cerr << "Mass cannot be negative or null" "\n";
-        }
-    }
-
-    void Body::setRadius(float r)
-    {
-        if (r > 0) {
-            radius = r;
-        }
-        else {
-            std::cerr << "Radius cannot be negative or null" "\n";
-        }
-    }
-
-    void Body::setSpeed(Velocity2 v)
-    {
-        speed = v;
-    }
-
-    void Body::setAcceleration(double a)
-    {
-        acceleration = a;
-    }
-
-    void Body::setPosition(Vector2 p)
-    {
-        pos = p;
-    }
-
-    /**
-    All this following code need to be changed and optimized.
-    All the code below this message are obselete.
-     */
-
-    bool collisionCheck(Body& b1, Body& b2) {
-
-        double distance = distanceBetween(b1.getPos(), b2.getPos());
-        float radiusSum = b1.getRadius() + b2.getRadius();
-        return distance <= radiusSum;
+    if (has_touched_right_ledge) {
+        pos.x = limitX - radius;
+        velocity.x *= -0.9f;
     }
 }
 
+void Body::update(float deltaTime) {
+    if (oldPositions.empty() || Vector2Distance(pos, oldPositions.back()) > 0.1f) {
+        if (oldPositions.size() >= MAXOLDPOS) {
+            oldPositions.erase(oldPositions.begin());
+        }
+        oldPositions.push_back(pos);
+    }
+
+    Vector2 acc = { (float)(totalForce.x / mass), (float)(totalForce.y / mass) };
+
+    velocity.x += acc.x * deltaTime;
+    velocity.y += acc.y * deltaTime;
+
+    pos.x += velocity.x * deltaTime;
+    pos.y += velocity.y * deltaTime;
+
+    totalForce = { 0.0f, 0.0f };
+
+    check_touched_ledge();
+}
+
+const std::vector<Vector2>& Body::getOldPositions() const {
+    return oldPositions;
+}
+
+void Body::addForce(Vector2& Fvector) {
+    totalForce.x += Fvector.x;
+    totalForce.y += Fvector.y;
+}
+
+void Body::handleCollision(Body& other) {
+    Vector2 normal = Vector2Subtract(other.pos, this->pos);
+    float distance = Vector2Length(normal);
+
+    if (distance == 0) return;
+
+    normal = Vector2Scale(normal, 1.0f / distance);
+
+    float overlap = (radius + other.radius) - distance;
+    if (overlap > 0) {
+        Vector2 separation = Vector2Scale(normal, overlap / 2.0f);
+        pos = Vector2Subtract(pos, separation);
+        other.pos = Vector2Add(other.pos, separation);
+    }
+
+    Vector2 relativeVelocity = Vector2Subtract(velocity, other.velocity);
+    float velocityAlongNormal = Vector2DotProduct(relativeVelocity, normal);
+
+    if (velocityAlongNormal < 0) return;
+
+    float e = 0.9f;
+
+    float j = -(1.0f + e) * velocityAlongNormal;
+    j /= (1.0f / (float)mass + 1.0f / (float)other.mass);
+
+    Vector2 impulse = Vector2Scale(normal, j);
+
+    velocity = Vector2Add(velocity, Vector2Scale(impulse, 1.0f / (float)mass));
+    other.velocity = Vector2Subtract(other.velocity, Vector2Scale(impulse, 1.0f / (float)other.mass));
+}

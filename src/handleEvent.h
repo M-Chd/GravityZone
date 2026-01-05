@@ -3,7 +3,4 @@
 #include "body.h"
 #include "space.h"
 
-namespace Space {
-
-	void handleEvent(space &Space);
-}
+void handleEvent(space &Space);

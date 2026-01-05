@@ -7,40 +7,40 @@
 #include <memory>
 #include <vector>
 
-#define HEIGHT 720
-#define LENGTH 1280
-
-using namespace Space;
-
+constexpr uint16_t HEIGHT  = 720;
+constexpr uint16_t LENGTH = 1280;
 
 int main() {
-
-    
     InitWindow(LENGTH, HEIGHT, "GravityZone-alpha");
-
     SetTargetFPS(60);
 
-    space Space;
-
-    Vector2 pos = {20,20};
-
-    Body planet = Body(WHITE,pos,50,1,Velocity2(1,1));
-
+    space terrain;
     View v;
 
-    Space.add(planet);
-
     while (!WindowShouldClose()) {
+       
+        handleEvent(terrain);
+
+        
+        float dt = GetFrameTime();
+
+        terrain.applyG();
+
+        for (auto& b : terrain.getBodies()) {
+            b.update(dt);
+        }
+
         BeginDrawing();
         ClearBackground(BLACK);
 
-        
-        handleEvent(Space);
-        Space.updateBodies();
-        Space.freeBodies();
+        if (!terrain.getBodies().empty()) {
+            terrain.drawBodies();
+            terrain.clearBodiesIfOver10();
 
-        v.DebugInfo(planet);
-        
+            DrawFPS(10, 10);
+            DrawText(TextFormat("Corps: %i", terrain.getBodies().size()), 10, 30, 20, RAYWHITE);
+        }
+
         EndDrawing();
     }
 
