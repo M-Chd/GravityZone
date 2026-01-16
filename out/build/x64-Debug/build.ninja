@@ -51,7 +51,7 @@ build cmake_object_order_depends_target_GravityZone: phony || .
 
 build CMakeFiles\GravityZone.dir\src\main.cpp.obj: CXX_COMPILER__GravityZone_unscanned_Debug C$:\Users\mouad\OneDrive\Desktop\GravityZone\src\main.cpp || cmake_object_order_depends_target_GravityZone
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20
-  INCLUDES = -IC:\Libraries\raylib\include
+  INCLUDES = -I\include\raylib\include
   OBJECT_DIR = CMakeFiles\GravityZone.dir
   OBJECT_FILE_DIR = CMakeFiles\GravityZone.dir\src
   TARGET_COMPILE_PDB = CMakeFiles\GravityZone.dir\
@@ -59,7 +59,7 @@ build CMakeFiles\GravityZone.dir\src\main.cpp.obj: CXX_COMPILER__GravityZone_uns
 
 build CMakeFiles\GravityZone.dir\src\body.cpp.obj: CXX_COMPILER__GravityZone_unscanned_Debug C$:\Users\mouad\OneDrive\Desktop\GravityZone\src\body.cpp || cmake_object_order_depends_target_GravityZone
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20
-  INCLUDES = -IC:\Libraries\raylib\include
+  INCLUDES = -I\include\raylib\include
   OBJECT_DIR = CMakeFiles\GravityZone.dir
   OBJECT_FILE_DIR = CMakeFiles\GravityZone.dir\src
   TARGET_COMPILE_PDB = CMakeFiles\GravityZone.dir\
@@ -67,7 +67,7 @@ build CMakeFiles\GravityZone.dir\src\body.cpp.obj: CXX_COMPILER__GravityZone_uns
 
 build CMakeFiles\GravityZone.dir\src\constant.cpp.obj: CXX_COMPILER__GravityZone_unscanned_Debug C$:\Users\mouad\OneDrive\Desktop\GravityZone\src\constant.cpp || cmake_object_order_depends_target_GravityZone
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20
-  INCLUDES = -IC:\Libraries\raylib\include
+  INCLUDES = -I\include\raylib\include
   OBJECT_DIR = CMakeFiles\GravityZone.dir
   OBJECT_FILE_DIR = CMakeFiles\GravityZone.dir\src
   TARGET_COMPILE_PDB = CMakeFiles\GravityZone.dir\
@@ -75,7 +75,7 @@ build CMakeFiles\GravityZone.dir\src\constant.cpp.obj: CXX_COMPILER__GravityZone
 
 build CMakeFiles\GravityZone.dir\src\simulation.cpp.obj: CXX_COMPILER__GravityZone_unscanned_Debug C$:\Users\mouad\OneDrive\Desktop\GravityZone\src\simulation.cpp || cmake_object_order_depends_target_GravityZone
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20
-  INCLUDES = -IC:\Libraries\raylib\include
+  INCLUDES = -I\include\raylib\include
   OBJECT_DIR = CMakeFiles\GravityZone.dir
   OBJECT_FILE_DIR = CMakeFiles\GravityZone.dir\src
   TARGET_COMPILE_PDB = CMakeFiles\GravityZone.dir\
@@ -83,7 +83,7 @@ build CMakeFiles\GravityZone.dir\src\simulation.cpp.obj: CXX_COMPILER__GravityZo
 
 build CMakeFiles\GravityZone.dir\src\space.cpp.obj: CXX_COMPILER__GravityZone_unscanned_Debug C$:\Users\mouad\OneDrive\Desktop\GravityZone\src\space.cpp || cmake_object_order_depends_target_GravityZone
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20
-  INCLUDES = -IC:\Libraries\raylib\include
+  INCLUDES = -I\include\raylib\include
   OBJECT_DIR = CMakeFiles\GravityZone.dir
   OBJECT_FILE_DIR = CMakeFiles\GravityZone.dir\src
   TARGET_COMPILE_PDB = CMakeFiles\GravityZone.dir\
@@ -91,7 +91,7 @@ build CMakeFiles\GravityZone.dir\src\space.cpp.obj: CXX_COMPILER__GravityZone_un
 
 build CMakeFiles\GravityZone.dir\src\handleEvent.cpp.obj: CXX_COMPILER__GravityZone_unscanned_Debug C$:\Users\mouad\OneDrive\Desktop\GravityZone\src\handleEvent.cpp || cmake_object_order_depends_target_GravityZone
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20
-  INCLUDES = -IC:\Libraries\raylib\include
+  INCLUDES = -I\include\raylib\include
   OBJECT_DIR = CMakeFiles\GravityZone.dir
   OBJECT_FILE_DIR = CMakeFiles\GravityZone.dir\src
   TARGET_COMPILE_PDB = CMakeFiles\GravityZone.dir\
@@ -99,7 +99,7 @@ build CMakeFiles\GravityZone.dir\src\handleEvent.cpp.obj: CXX_COMPILER__GravityZ
 
 build CMakeFiles\GravityZone.dir\src\utils.cpp.obj: CXX_COMPILER__GravityZone_unscanned_Debug C$:\Users\mouad\OneDrive\Desktop\GravityZone\src\utils.cpp || cmake_object_order_depends_target_GravityZone
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20
-  INCLUDES = -IC:\Libraries\raylib\include
+  INCLUDES = -I\include\raylib\include
   OBJECT_DIR = CMakeFiles\GravityZone.dir
   OBJECT_FILE_DIR = CMakeFiles\GravityZone.dir\src
   TARGET_COMPILE_PDB = CMakeFiles\GravityZone.dir\
@@ -107,7 +107,7 @@ build CMakeFiles\GravityZone.dir\src\utils.cpp.obj: CXX_COMPILER__GravityZone_un
 
 build CMakeFiles\GravityZone.dir\src\logs.cpp.obj: CXX_COMPILER__GravityZone_unscanned_Debug C$:\Users\mouad\OneDrive\Desktop\GravityZone\src\logs.cpp || cmake_object_order_depends_target_GravityZone
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20
-  INCLUDES = -IC:\Libraries\raylib\include
+  INCLUDES = -I\include\raylib\include
   OBJECT_DIR = CMakeFiles\GravityZone.dir
   OBJECT_FILE_DIR = CMakeFiles\GravityZone.dir\src
   TARGET_COMPILE_PDB = CMakeFiles\GravityZone.dir\
@@ -125,7 +125,7 @@ build GravityZone.exe: CXX_EXECUTABLE_LINKER__GravityZone_Debug CMakeFiles\Gravi
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
   LINK_FLAGS = /machine:x64 /debug /INCREMENTAL /subsystem:console
   LINK_LIBRARIES = raylib.lib  winmm.lib  gdi32.lib  opengl32.lib  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib
-  LINK_PATH = -LIBPATH:C:\Libraries\raylib\lib
+  LINK_PATH = -LIBPATH:\include\raylib\lib
   OBJECT_DIR = CMakeFiles\GravityZone.dir
   POST_BUILD = C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Users\mouad\OneDrive\Desktop\GravityZone\out\build\x64-Debug && C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noprofile -executionpolicy Bypass -file C:/Users/mouad/OneDrive/Desktop/vcpkg/scripts/buildsystems/msbuild/applocal.ps1 -targetBinary C:/Users/mouad/OneDrive/Desktop/GravityZone/out/build/x64-Debug/GravityZone.exe -installedDir C:/Users/mouad/OneDrive/Desktop/vcpkg/installed/x64-windows/debug/bin -OutVariable out"
   PRE_LINK = cd .

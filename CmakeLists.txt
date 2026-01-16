@@ -4,12 +4,15 @@ project(GravityZone)
 set(CMAKE_CXX_STANDARD 20)
 
 
-set(RAYLIB_PATH "C:/Libraries/raylib")
+set(RAYLIB_PATH "/include/raylib")
 
 include_directories(${RAYLIB_PATH}/include)
 link_directories(${RAYLIB_PATH}/lib)
 
-add_executable(GravityZone "src/main.cpp" "src/body.cpp" "src/constant.cpp" "src/simulation.cpp" "src/simulation.h" "src/space.h" "src/space.cpp" "src/handleEvent.h" "src/handleEvent.cpp" "src/utils.h" "src/utils.cpp" "src/logs.h" "src/logs.cpp" "src/LogEvents.h")
+add_executable(GravityZone "src/main.cpp" "src/body.cpp" "src/constant.cpp" "src/simulation.cpp" 
+"src/simulation.h" "src/space.h" "src/space.cpp" "src/handleEvent.h"
+ "src/handleEvent.cpp" "src/utils.h" "src/utils.cpp"
+  "src/logs.h" "src/logs.cpp" "src/LogEvents.h")
 
 set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
 
