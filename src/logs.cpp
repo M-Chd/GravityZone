@@ -1,21 +1,40 @@
 #include "logs.h"
 
-void Log::ErrorMessage(logsEvents event)
+void Log::update(space& s)
 {
-}
+    std::vector<logsEvents> logs = s.getLogs();
 
-void Log::WarningMessage(logsEvents event)
-{
-}
+    if (!logs.empty()){
+        for (auto s : logs){
 
-void Log::PlaceEvent(logsEvents event)
-{
-}
-
-void Log::DeleteEvent(logsEvents event)
-{
-}
-
-void Log::CollisionEvent(logsEvents event)
-{
+            switch(s){
+                case logsEvents::PLACE_EVENT:
+                {
+                    std::cout << "+ Body placed" << "\n";
+                    logs.clear();
+                }break;
+                case logsEvents::COLLISION_EVENT:
+                {
+                    std::cout << "+ Collision occured" << "\n";
+                    logs.clear();
+                }break;
+                case logsEvents::DELETE_EVENT:
+                {
+                    std::cout << "+ Body deleted" << "\n";
+                    logs.clear();
+                }break;
+                case logsEvents::ERROR_EVENT:
+                {
+                    std::cout << "+ An error occured" << "\n";
+                    logs.clear();
+                }break;
+                default:
+                {
+                    std::cout << "+ Warining - something wrong occured !" << "\n";
+                    logs.clear();
+                }break;
+            }
+        }
+        logs.clear();
+    }
 }

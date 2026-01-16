@@ -73,7 +73,7 @@ build CMakeFiles\GravityZone.dir\src\constant.cpp.obj: CXX_COMPILER__GravityZone
   TARGET_COMPILE_PDB = CMakeFiles\GravityZone.dir\
   TARGET_PDB = GravityZone.pdb
 
-build CMakeFiles\GravityZone.dir\src\view.cpp.obj: CXX_COMPILER__GravityZone_unscanned_Debug C$:\Users\mouad\OneDrive\Desktop\GravityZone\src\view.cpp || cmake_object_order_depends_target_GravityZone
+build CMakeFiles\GravityZone.dir\src\simulation.cpp.obj: CXX_COMPILER__GravityZone_unscanned_Debug C$:\Users\mouad\OneDrive\Desktop\GravityZone\src\simulation.cpp || cmake_object_order_depends_target_GravityZone
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++20
   INCLUDES = -IC:\Libraries\raylib\include
   OBJECT_DIR = CMakeFiles\GravityZone.dir
@@ -121,7 +121,7 @@ build CMakeFiles\GravityZone.dir\src\logs.cpp.obj: CXX_COMPILER__GravityZone_uns
 #############################################
 # Link the executable GravityZone.exe
 
-build GravityZone.exe: CXX_EXECUTABLE_LINKER__GravityZone_Debug CMakeFiles\GravityZone.dir\src\main.cpp.obj CMakeFiles\GravityZone.dir\src\body.cpp.obj CMakeFiles\GravityZone.dir\src\constant.cpp.obj CMakeFiles\GravityZone.dir\src\view.cpp.obj CMakeFiles\GravityZone.dir\src\space.cpp.obj CMakeFiles\GravityZone.dir\src\handleEvent.cpp.obj CMakeFiles\GravityZone.dir\src\utils.cpp.obj CMakeFiles\GravityZone.dir\src\logs.cpp.obj
+build GravityZone.exe: CXX_EXECUTABLE_LINKER__GravityZone_Debug CMakeFiles\GravityZone.dir\src\main.cpp.obj CMakeFiles\GravityZone.dir\src\body.cpp.obj CMakeFiles\GravityZone.dir\src\constant.cpp.obj CMakeFiles\GravityZone.dir\src\simulation.cpp.obj CMakeFiles\GravityZone.dir\src\space.cpp.obj CMakeFiles\GravityZone.dir\src\handleEvent.cpp.obj CMakeFiles\GravityZone.dir\src\utils.cpp.obj CMakeFiles\GravityZone.dir\src\logs.cpp.obj
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
   LINK_FLAGS = /machine:x64 /debug /INCREMENTAL /subsystem:console
   LINK_LIBRARIES = raylib.lib  winmm.lib  gdi32.lib  opengl32.lib  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib

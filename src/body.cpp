@@ -19,30 +19,25 @@ void Body::draw() const {
     DrawCircleV({ pos.x * scale, pos.y * scale }, radius * scale, color);
 }
 
-void Body::check_touched_ledge() {
-    float limitX = 1280.0f / scale;
-    float limitY = 720.0f / scale;
+void Body::checkLedgeCollisions() {
 
-    has_touched_low_ledge = (pos.y + radius >= limitY);
-    has_touched_top_ledge = (pos.y - radius <= 0);
-    has_touched_left_ledge = (pos.x - radius <= 0);
-    has_touched_right_ledge = (pos.x + radius >= limitX);
+    const float  bounce = -0.9f;
 
-    if (has_touched_low_ledge) {
-        pos.y = limitY - radius;
-        velocity.y *= -0.9f;
-    }
-    if (has_touched_top_ledge) {
+    if (pos.y - radius <= 0) {
         pos.y = radius;
-        velocity.y *= -0.9f;
+        velocity.y *= bounce;
     }
-    if (has_touched_left_ledge) {
+    else if (pos.y + radius >= limitY) {
+        pos.y = limitY - radius;
+        velocity.y *= bounce;
+    }
+    if (pos.x - radius <= 0){
         pos.x = radius;
-        velocity.x *= -0.9f;
+        velocity.x *= bounce;
     }
-    if (has_touched_right_ledge) {
+    else if (pos.x + radius >= limitX){
         pos.x = limitX - radius;
-        velocity.x *= -0.9f;
+        velocity.x *= bounce;
     }
 }
 
@@ -64,7 +59,7 @@ void Body::update(float deltaTime) {
 
     totalForce = { 0.0f, 0.0f };
 
-    check_touched_ledge();
+    checkLedgeCollisions();
 }
 
 const std::vector<Vector2>& Body::getOldPositions() const {
@@ -82,7 +77,7 @@ void Body::handleCollision(Body& other) {
 
     if (distance == 0) return;
 
-    normal = Vector2Scale(normal, 1.0f / distance);
+    normal = Vector2Scale(normal, 1.0 / distance);
 
     float overlap = (radius + other.radius) - distance;
     if (overlap > 0) {
@@ -96,13 +91,13 @@ void Body::handleCollision(Body& other) {
 
     if (velocityAlongNormal < 0) return;
 
-    float e = 0.9f;
+    float e = 0.9;
 
-    float j = -(1.0f + e) * velocityAlongNormal;
-    j /= (1.0f / (float)mass + 1.0f / (float)other.mass);
+    float j = -(1.0 + e) * velocityAlongNormal;
+    j /= (1.0 / (float)mass + 1.0 / (float)other.mass);
 
     Vector2 impulse = Vector2Scale(normal, j);
 
-    velocity = Vector2Add(velocity, Vector2Scale(impulse, 1.0f / (float)mass));
-    other.velocity = Vector2Subtract(other.velocity, Vector2Scale(impulse, 1.0f / (float)other.mass));
+    velocity = Vector2Add(velocity, Vector2Scale(impulse, 1.0 / (float)mass));
+    other.velocity = Vector2Subtract(other.velocity, Vector2Scale(impulse, 1.0 / (float)other.mass));
 }

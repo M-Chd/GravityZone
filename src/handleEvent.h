@@ -3,4 +3,4 @@
 #include "body.h"
 #include "space.h"
 
-void handleEvent(space &Space);
+void handleEvent(space &Space,Log& log);

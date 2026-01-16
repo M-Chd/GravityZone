@@ -1,18 +1,10 @@
 #pragma once
-#include "logsEvents.h"
+#include "space.h"
+#include "LogEvents.h"
+
+class space;
 
 class Log {
-private:
-	logsEvents m_evenType;
-
 public:
-	Log() {};
-	~Log() {};
-
-	void ErrorMessage(logsEvents event);
-	void WarningMessage(logsEvents event);
-	void PlaceEvent(logsEvents event);
-	void DeleteEvent(logsEvents event);
-	void CollisionEvent(logsEvents event);
-
+	void update(space& s);
 };

@@ -1,7 +1,7 @@
 #include <iostream>
 #include "handleEvent.h"
 
-void handleEvent(space& Space)
+void handleEvent(space& Space,Log& log)
 {
 	if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
 		Vector2 mousePos = GetMousePosition();
@@ -9,14 +9,13 @@ void handleEvent(space& Space)
 
 		Body planet = Body(WHITE, mousePos, 10e12, 1, Vector2(0,0));
 
-		Space.add(planet);
+		Space.add(planet,log);
 	}
 
 	if (IsMouseButtonDown(MOUSE_BUTTON_RIGHT)) {
 		Vector2 mousePos = GetMousePosition();
 		mousePos = { mousePos.x / scale, mousePos.y / scale };
 			
-		Space.removeAtPos(mousePos);
+		Space.removeAtPos(mousePos,log);
 	}
 }
-	//TODO Need to be moved and optimized.

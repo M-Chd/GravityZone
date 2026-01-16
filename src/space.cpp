@@ -1,6 +1,8 @@
 #include "space.h"
 #include <iostream>
 
+constexpr uint16_t MAX_BODIES = 10;
+
 space::space() {}
 
 space::~space() {
@@ -18,22 +20,22 @@ void space::applyG() {
         for (size_t j = 0; j < bodies.size(); ++j) {
             if (i == j) continue;
 
-            Body& a = bodies[i];
-            Body& b = bodies[j];
+            Body& firstBody = bodies[i];
+            Body& secondBody = bodies[j];
 
-            Vector2 direction = { b.getPos().x - a.getPos().x, b.getPos().y - a.getPos().y };
-            double dist = distanceBetween(a.getPos(), b.getPos());
+            Vector2 direction = { secondBody.getPos().x - firstBody.getPos().x, secondBody.getPos().y - firstBody.getPos().y };
+            double dist = distanceBetween(firstBody.getPos(), secondBody.getPos());
 
-            if (dist < 2.0f) dist = 2.0f;
+            if (dist < 2.0) dist = 2.0;
 
-            double forceMag = (G * a.getMass() * b.getMass()) / (dist * dist);
+            double forceMag = (Gforce * firstBody.getMass() * secondBody.getMass()) / (dist * dist);
 
             Vector2 forceVec = {
                 (float)(direction.x / dist * forceMag),
                 (float)(direction.y / dist * forceMag)
             };
 
-            a.addForce(forceVec);
+            firstBody.addForce(forceVec);
         }
     }
 }
@@ -44,37 +46,54 @@ void space::drawBodies() {
     }
 }
 
-void space::clearBodiesIfOver10() {
-    if (bodies.size() >= 10) {
+void space::clearBodiesIfOver10(Log& log) {
+    if (bodies.size() == MAX_BODIES) {
         bodies.clear();
+        logs.push_back(logsEvents::DELETE_EVENT);
+        notify(log);
     }
 }
 
-void space::updateAll(float dt) {
+void space::updateAll(float dt,Log& log) {
     applyG();
 
     for (size_t i = 0; i < bodies.size(); ++i) {
         for (size_t j = i + 1; j < bodies.size(); ++j) {
-            bodies[i].handleCollision(bodies[j]);
+
+            if (bodies.size() < 5){
+                bodies[i].handleCollision(bodies[j]); //optimisation?
+                logs.push_back(logsEvents::COLLISION_EVENT);
+            }
         }
     }
+
+    notify(log);
 
     for (auto& b : bodies) {
         b.update(dt);
     }
 }
 
-void space::add(Body b) {
+void space::add(Body b,Log& log) {
     bodies.push_back(b);
+    logs.push_back(logsEvents::PLACE_EVENT);
+    notify(log);
 }
 
-void space::removeAtPos(Vector2 mousePos) {
+void space::removeAtPos(Vector2 mousePos,Log& log) {
     for (auto it = bodies.begin(); it != bodies.end(); ) {
         if (isInside(mousePos, *it)) {
             it = bodies.erase(it);
+            logs.push_back(logsEvents::DELETE_EVENT);
         }
         else {
             ++it;
         }
     }
+    notify(log);
+}
+
+void space::notify(Log& log)
+{
+    log.update(*this);
 }

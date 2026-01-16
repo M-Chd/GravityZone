@@ -10,7 +10,7 @@
     <ClCompile Include="C:\Users\mouad\OneDrive\Desktop\GravityZone\src\constant.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\mouad\OneDrive\Desktop\GravityZone\src\view.cpp">
+    <ClCompile Include="C:\Users\mouad\OneDrive\Desktop\GravityZone\src\simulation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="C:\Users\mouad\OneDrive\Desktop\GravityZone\src\space.cpp">
@@ -27,6 +27,9 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="C:\Users\mouad\OneDrive\Desktop\GravityZone\src\simulation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="C:\Users\mouad\OneDrive\Desktop\GravityZone\src\space.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -39,13 +42,7 @@
     <ClInclude Include="C:\Users\mouad\OneDrive\Desktop\GravityZone\src\logs.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\mouad\OneDrive\Desktop\GravityZone\src\logsEvents.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\body.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\view.h">
+    <ClInclude Include="C:\Users\mouad\OneDrive\Desktop\GravityZone\src\LogEvents.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

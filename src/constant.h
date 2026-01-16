@@ -2,7 +2,7 @@
 #include <math.h>
 
 /* Const */
-extern const double G;
-extern const int cellSize;
-extern const int cellCount;
-extern const float scale;
+extern const double Gforce; //gravity force
+extern const float scale; //scale of the screen
+extern const double limitX; //X limit of the screen
+extern const double limitY; //Y limit of the screen
